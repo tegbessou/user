@@ -1,0 +1,34 @@
+framework:
+    messenger:
+        transports:
+            sync: 'sync://'
+            user:
+                dsn: '%env(MESSENGER_TRANSPORT_USER_DSN)%'
+                options:
+                    exchange:
+                        name: user
+                        type: direct
+                        default_publish_routing_key: user
+                    queues:
+                        user:
+                            binding_keys: [ user ]
+            user_to_tasting:
+                dsn: '%env(MESSENGER_TRANSPORT_USER_TO_TASTING_DSN)%'
+                serializer: messenger.transport.symfony_serializer
+                options:
+                    exchange:
+                        name: tasting_from_external
+                        type: direct
+                        default_publish_routing_key: tasting_from_external
+                    queues:
+                        tasting:
+                            binding_keys: [tasting_from_external]
+        routing:
+            'EmpireDesAmis\User\Infrastructure\Symfony\Messenger\Message\UserCreatedMessage': [user_to_tasting]
+
+when@test:
+    framework:
+        messenger:
+            transports:
+                user: 'test://'
+                user_to_tasting: 'test://'

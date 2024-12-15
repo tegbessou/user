@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Up needed docker
+        run: docker compose up -d php db document
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: make vendor
+
+      - name: Load database
+        run: make db-load-fixtures-test
+
+      - name: Code quality
+        run: make code-quality
+
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup docker override
+        run: make docker-compose.override.yaml
+
+      - name: Up needed docker
+        run: docker compose up -d nginx-proxy redis php db document
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: make vendor
+
+      - name: Load database
+        run: make db-load-fixtures-test
+
+      - name: Unit test
+        run: make unit-test
+
+      - name: Adapter test
+        run: make adapter-test
+
+      - name: Feature test
+        run: make feature-test

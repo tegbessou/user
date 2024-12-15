@@ -1,0 +1,130 @@
+deptrac:
+    paths:
+        - ./src/
+
+    layers:
+        - name: Domain
+          collectors:
+            - type: directory
+              value: .+/Domain/.*
+
+        - name: Application
+          collectors:
+            - type: directory
+              value: .+/Application/.*
+
+        - name: Infrastructure
+          collectors:
+            - type: directory
+              value: .+/Infrastructure/(?!(Webmozart/Assert)).*
+
+        - name: Shared Kernel Domain
+          collectors:
+            - type: classNameRegex
+              value: '#^TegCorp\\SharedKernelBundle\\Domain#'
+
+        - name: Shared Kernel Application
+          collectors:
+            - type: classNameRegex
+              value: '#^TegCorp\\SharedKernelBundle\\Application#'
+
+        - name: Shared Kernel Infrastructure
+          collectors:
+            - type: classNameRegex
+              value: '#^TegCorp\\SharedKernelBundle\\Infrastructure\\(?!(Webmozart\\Assert))#'
+
+        - name: Vendors
+          collectors:
+            - type: classNameRegex
+              value: '#^ApiPlatform\\#'
+            - type: classNameRegex
+              value: '#^Symfony\\(?!(Contracts\\EventDispatcher))#'
+            - type: classNameRegex
+              value: '#^Doctrine\\ORM\\(?!(Mapping))#'
+            - type: classNameRegex
+              value: '#^Webmozart\\Assert\\Assert#'
+            - type: classNameRegex
+              value: '#^Kreait\\#'
+            - type: classNameRegex
+              value: '#^Lexik\\#'
+            - type: classNameRegex
+              value: '#^Vich\\#'
+            - type: classNameRegex
+              value: '#^CodeBuds#'
+            - type: classNameRegex
+              value: '#^Doctrine\\ODM\\MongoDB\\(?!(Mapping))#'
+            - type: classNameRegex
+              value: '#^EmpireDesAmis\\SecurityAuthenticatorBundle#'
+
+        - name: Attributes
+          collectors:
+            - type: classNameRegex
+              value: '#^Doctrine\\ORM\\Mapping#'
+            - type: classNameRegex
+              value: '#^Override#'
+            - type: classNameRegex
+              value: '#^Doctrine\\ODM\\MongoDB\\Mapping\\Annotations#'
+
+        - name: Collection
+          collectors:
+            - type: classNameRegex
+              value: '#^Doctrine\\Common\\Collections#'
+
+        - name: Uuid
+          collectors:
+            - type: classNameRegex
+              value: '#^Ramsey\\#'
+
+        - name: Logger
+          collectors:
+            - type: classNameRegex
+              value: '#^Monolog\\#'
+            - type: classNameRegex
+              value: '#^Psr\\#'
+
+        - name: Helpers
+          collectors:
+            - type: classNameRegex
+              value: '#^TegCorp\\SharedKernelBundle\\Infrastructure\\Webmozart\\Assert#'
+
+        - name: Events
+          collectors:
+            - type: classNameRegex
+              value: '#^Symfony\\Contracts\\EventDispatcher\\#'
+
+    ruleset:
+        Domain:
+            - Helpers
+            - Attributes
+            - Events
+            - Collection
+            - Uuid
+            - Shared Kernel Domain
+
+        Application:
+            - Domain
+            - Helpers
+            - Attributes
+            - Events
+            - Collection
+            - Uuid
+            - Shared Kernel Domain
+            - Shared Kernel Application
+            - Logger
+
+        Infrastructure:
+            - Domain
+            - Application
+            - Vendors
+            - Helpers
+            - Attributes
+            - Collection
+            - Events
+            - Uuid
+            - Logger
+            - Shared Kernel Domain
+            - Shared Kernel Application
+            - Shared Kernel Infrastructure
+
+        Helpers:
+            - Vendors

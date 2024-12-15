@@ -1,0 +1,26 @@
+api_platform:
+    title: User - Des amis, du vin
+    version: 1.0.0
+    show_webby: false
+    resource_class_directories:
+        - '%kernel.project_dir%/src/Infrastructure/ApiPlatform/Resource'
+    swagger:
+        api_keys:
+            key:
+                name: 'Authorization'
+                type: 'header'
+    formats:
+        jsonld: ['application/ld+json']
+        multipart: ['multipart/form-data']
+    docs_formats:
+        jsonld: ['application/ld+json']
+        jsonopenapi: ['application/vnd.openapi+json']
+        html: ['text/html']
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
+        extra_properties:
+            standard_put: true
+            rfc_7807_compliant_errors: true
+    use_symfony_listeners: false

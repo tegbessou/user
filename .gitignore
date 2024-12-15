@@ -1,10 +1,50 @@
-
+### Docker
+/docker-compose.override.yaml
+### PHPStorm
+/.idea
+### MAC
+/.DS_Store
+/*/.DS_Store
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
+/node_modules/
 /public/bundles/
 /var/
 /vendor/
+/bin/.phpunit/*
 ###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> friends-of-behat/symfony-extension ###
+/behat.yml
+###< friends-of-behat/symfony-extension ###
+
+### Behat
+/public/behat_trace/
+###> eslint ###
+/v6/
+###< eslint ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> qossmic/deptrac ###
+/.deptrac*.cache
+###< qossmic/deptrac ###
+

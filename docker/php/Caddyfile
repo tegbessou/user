@@ -1,0 +1,32 @@
+{
+    frankenphp
+    order php_server before file_server
+}
+
+:8080 {
+    root * /home/app/public
+
+    @static {
+        file {
+            try_files {path} {path}/
+        }
+        path *.css *.js *.jpg *.jpeg *.png *.gif *.svg *.ico *.woff *.woff2
+    }
+
+    handle @static {
+        file_server
+    }
+
+    @rewrite {
+        not {
+            path *.css *.js *.jpg *.jpeg *.png *.gif *.svg *.ico *.woff *.woff2
+        }
+
+        file {
+            try_files /index.php?q={path} /index.php
+        }
+    }
+    rewrite @rewrite /index.php
+
+    php_server
+}

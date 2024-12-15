@@ -1,0 +1,4 @@
+kreait_firebase:
+  projects:
+    my_project:
+      credentials: '%kernel.project_dir%/config/firebase/poc-login-ga-firebase-adminsdk-pfuyp-056987cc8e.json'

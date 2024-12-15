@@ -1,0 +1,62 @@
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./docker/nginx-proxy/cert/:/etc/nginx/certs/
+    networks:
+      - web
+
+  php:
+    build: ./docker/php
+    restart: on-failure
+    volumes:
+      - .:/home/app
+      - ./docker/php/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - web
+    tty: true
+    external_links:
+      - nginx-proxy:des-amis-du-vin.docker
+
+  db:
+    image: mariadb:10.11
+    command: --default-authentication-plugin=mysql_native_password
+    restart: on-failure
+    volumes:
+      - .:/home/app
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - web
+
+  redis:
+    image: redis:7.2-alpine
+    networks:
+      - web
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    networks:
+      - web
+
+  mailcatcher:
+    image: dockage/mailcatcher:0.9.0
+    networks:
+      - web
+
+  document:
+    image: mongo:8.0
+    volumes:
+      - .:/home/app
+    networks:
+      - web
+
+networks:
+    web:
+
+volumes:
+  caddy_data:
+  caddy_config:

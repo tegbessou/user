@@ -1,0 +1,6 @@
+parameters:
+    tmpDir: var/cache/phpstan
+    ignoreErrors:
+        -
+            message: '#Parameter \$context of method EmpireDesAmis\\User\\Infrastructure\\ApiPlatform\\State\\Processor\\LogInUserProcessor\:\:process\(\) has invalid type Illuminate\\Http\\Request.#'
+            path: src/Infrastructure/ApiPlatform/State/Processor/LogInUserProcessor.php
