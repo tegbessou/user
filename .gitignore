@@ -48,3 +48,6 @@ phpstan.neon
 /.deptrac*.cache
 ###< qossmic/deptrac ###
 
+###> secret ###
+/config/firebase/poc-login-ga-firebase-adminsdk-pfuyp-056987cc8e.json
+###> secret ###
