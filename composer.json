@@ -58,7 +58,7 @@
         "twig/twig": "^3.8"
     },
     "require-dev": {
-        "doctrine/data-fixtures": "^1.7",
+        "doctrine/data-fixtures": "^2.0",
         "doctrine/doctrine-fixtures-bundle": "^3.5",
         "friends-of-behat/page-object-extension": "^0.3",
         "friends-of-behat/symfony-extension": "^2.5",
