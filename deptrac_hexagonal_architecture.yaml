@@ -95,9 +95,6 @@ deptrac:
     ruleset:
         Domain:
             - Helpers
-            - Attributes
-            - Events
-            - Collection
             - Uuid
             - Shared Kernel Domain
 
