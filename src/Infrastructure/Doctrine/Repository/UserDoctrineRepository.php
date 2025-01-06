@@ -8,10 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use EmpireDesAmis\User\Domain\Entity\User;
 use EmpireDesAmis\User\Domain\Repository\UserRepositoryInterface;
 use EmpireDesAmis\User\Domain\ValueObject\UserEmail;
-use EmpireDesAmis\User\Domain\ValueObject\UserId;
 use EmpireDesAmis\User\Infrastructure\Doctrine\Entity\User as UserDoctrine;
 use EmpireDesAmis\User\Infrastructure\Doctrine\Mapper\UserMapper;
-use Symfony\Component\Uid\Uuid;
 
 final readonly class UserDoctrineRepository implements UserRepositoryInterface
 {
@@ -36,14 +34,6 @@ final readonly class UserDoctrineRepository implements UserRepositoryInterface
         }
 
         return UserMapper::toDomain($user);
-    }
-
-    #[\Override]
-    public function nextIdentity(): UserId
-    {
-        return UserId::fromString(
-            Uuid::v4()->toRfc4122()
-        );
     }
 
     #[\Override]
