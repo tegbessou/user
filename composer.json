@@ -59,7 +59,7 @@
     },
     "require-dev": {
         "doctrine/data-fixtures": "^2.0.1",
-        "doctrine/doctrine-fixtures-bundle": "^3.7.1",
+        "doctrine/doctrine-fixtures-bundle": "^4.0.0",
         "friends-of-behat/page-object-extension": "^0.3.2",
         "friends-of-behat/symfony-extension": "^2.6",
         "friendsofphp/php-cs-fixer": "^3.66.1",
