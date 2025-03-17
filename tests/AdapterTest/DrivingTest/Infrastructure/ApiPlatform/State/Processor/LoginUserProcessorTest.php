@@ -43,7 +43,7 @@ final class LoginUserProcessorTest extends ApiTestCase
             'payload' => [],
             'statusCode' => 422,
             'violations' => [
-                '@type' => 'ConstraintViolationList',
+                '@type' => 'ConstraintViolation',
                 'title' => 'An error occurred',
                 'description' => 'email: Cette valeur ne doit pas être vide.
 password: Cette valeur ne doit pas être vide.',
@@ -57,7 +57,7 @@ password: Cette valeur ne doit pas être vide.',
             ],
             'statusCode' => 422,
             'violations' => [
-                '@type' => 'ConstraintViolationList',
+                '@type' => 'ConstraintViolation',
                 'title' => 'An error occurred',
                 'description' => 'email: Cette valeur n\'est pas une adresse email valide.',
             ],

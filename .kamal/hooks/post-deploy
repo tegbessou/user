@@ -1,0 +1,4 @@
+#!/bin/sh
+
+kamal app exec php bin/console d:migration:migrate --no-interaction
+kamal app exec php bin/console lexik:jwt:generate-keypair

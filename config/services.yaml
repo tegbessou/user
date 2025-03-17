@@ -8,9 +8,6 @@ services:
     EmpireDesAmis\User\:
         resource: '../src/'
 
-    EmpireDesAmis\User\DataFixtures\:
-        resource: '../fixtures'
-
     EmpireDesAmis\User\Application\EventListener\OnUserCreated:
         tags: [kernel.event_listener]
 
@@ -22,11 +19,25 @@ services:
 
 when@dev:
     services:
+        _defaults:
+            autowire: true
+            autoconfigure: true
+
+        EmpireDesAmis\User\DataFixtures\:
+            resource: '../fixtures'
+
         EmpireDesAmis\SecurityAuthenticatorBundle\Firebase\Security\Authenticator\AuthenticateUserFromProviderFirebaseInterface:
             alias: EmpireDesAmis\SecurityAuthenticatorBundle\Firebase\Security\Authenticator\AuthenticateUserFromProviderFakeFirebase
 
 when@test:
     services:
+        _defaults:
+            autowire: true
+            autoconfigure: true
+
+        EmpireDesAmis\User\DataFixtures\:
+            resource: '../fixtures'
+
         EmpireDesAmis\SecurityAuthenticatorBundle\Firebase\Security\Authenticator\AuthenticateUserFromProviderFirebaseInterface:
             alias: EmpireDesAmis\SecurityAuthenticatorBundle\Firebase\Security\Authenticator\AuthenticateUserFromProviderFakeFirebase
 
