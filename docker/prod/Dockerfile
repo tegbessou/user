@@ -46,8 +46,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /app
 
-RUN ls -la
-
 RUN composer install --no-dev --no-scripts --no-progress --prefer-dist
 
 EXPOSE 8081

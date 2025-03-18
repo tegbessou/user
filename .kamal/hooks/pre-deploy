@@ -1,3 +1,0 @@
-#!/bin/sh
-
-kamal app exec php bin/console c:c
