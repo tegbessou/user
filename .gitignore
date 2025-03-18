@@ -49,7 +49,7 @@ phpstan.neon
 ###< qossmic/deptrac ###
 
 ###> secret ###
-/config/firebase/poc-login-ga-firebase-adminsdk-pfuyp-056987cc8e.json
+/config/firebase/firebase_credentials.json
 ###> secret ###
 
 /docker/prod/.env

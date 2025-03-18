@@ -26,6 +26,15 @@ jobs:
       - name: Install Kamal CLI via gem
         run: gem install kamal
 
+      - name: Create credential file firebase
+        run: |
+          echo "${{ secrets.FIREBASE_CREDENTIALS }}" > firebase_credentials.json
+
+      - name: Move file in folder
+        run: |
+          mkdir -p config/firebase
+          mv firebase_credentials.json config/firebase/firebase_credentials.json
+
       - name: Deploy with kamal
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
