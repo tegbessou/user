@@ -48,7 +48,4 @@ WORKDIR /app
 
 RUN composer install --no-dev --no-scripts --no-progress --prefer-dist
 
-RUN chown -R root:root /app/var \
-    && chmod -R 775 /app/var
-
 EXPOSE 8081
