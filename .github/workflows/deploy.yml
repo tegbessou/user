@@ -28,7 +28,9 @@ jobs:
 
       - name: Create credential file firebase
         run: |
-          echo "${{ secrets.FIREBASE_CREDENTIALS }}" > firebase_credentials.json
+          cat <<'EOF' > firebase_credentials.json
+          ${{ secrets.FIREBASE_CREDENTIALS }}
+          EOF
 
       - name: Move file in folder
         run: |
