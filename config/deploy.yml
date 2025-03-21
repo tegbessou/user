@@ -45,6 +45,7 @@ env:
     JWT_SECRET_KEY: '%kernel.project_dir%/config/jwt/private.pem'
     JWT_PUBLIC_KEY: '%kernel.project_dir%/config/jwt/public.pem'
     MONGODB_DB: 'eda_user'
+    MONGODB_USER: 'eda_user'
   secret:
     - DATABASE_URL
     - MESSENGER_TRANSPORT_USER_TO_TASTING_DSN
@@ -52,6 +53,7 @@ env:
     - JWT_PASSPHRASE
     - MAILER_DSN
     - MONGODB_URL
+    - MONGODB_PASSWORD
 
 labels:
   traefik.enable: "true"
