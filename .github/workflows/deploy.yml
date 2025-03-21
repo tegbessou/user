@@ -46,5 +46,6 @@ jobs:
           MAILER_DSN: ${{ secrets.MAILER_DSN }}
           MONGODB_URL: ${{ secrets.MONGODB_URL }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
         run: |
           kamal deploy
