@@ -13,7 +13,7 @@ retain_containers: 2
 
 proxy:
   ssl: false
-  host: 5.189.149.68
+  host: user.empire-des-amis.com
   app_port: 8081
   healthcheck:
     path: /api/up
