@@ -152,9 +152,9 @@ Add friend system + invitation....
 
 User context is responsible to send notification when invitation is sent
 
-Extract it in a microservice and a new project
-
 Add a fullname to user
+
+Create an endpoint to create user and remove event notification on UserAuthenticated
 
 ## Refactoring tech
 Refactorer le AuthenticateUserCommandHandler pour utiliser le pattern Stratégie au lieu d'appeler chaque méthode. => minor
