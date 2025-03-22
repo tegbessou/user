@@ -58,5 +58,5 @@ labels:
   traefik.http.routers.empire-des-amis-user.rule: "PathPrefix(`/user/api`)"
   traefik.http.routers.empire-des-amis-user.entrypoints: "web"
   traefik.http.services.empire-des-amis-user.loadbalancer.server.port: "8081"
-  traefik.http.routers.empire-des-amis-user.middlewares: "strip-prefix"
-  traefik.http.middlewares.strip-prefix.stripPrefix.prefixes: "/user"
+  traefik.http.routers.empire-des-amis-user.middlewares: "strip-prefix-user"
+  traefik.http.middlewares.strip-prefix-user.stripPrefix.prefixes: "/user"
